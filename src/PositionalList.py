@@ -28,7 +28,7 @@ class PositionalList(_DoublyLinkedBase):
             :param other:
             :return:
             """
-            return type(object) is type(self) and other._node is self._node
+            return type(other) is type(self) and other._node is self._node
 
         def __ne__(self, other):
             """
@@ -48,7 +48,7 @@ class PositionalList(_DoublyLinkedBase):
             raise TypeError("p must be proper Position type")
         if p._container is not self:
             raise ValueError("p does not belong to this container.")
-        if p._node._next is None:
+        if p._node._next is None or p._node._prev is None:
             raise ValueError('p is no longer valid.')
         return p._node
 
@@ -123,7 +123,7 @@ class PositionalList(_DoublyLinkedBase):
         :param e:
         :return:
         """
-        return self._make_position(e, self._head,self._head._next)
+        return self._insert_between(e, self._head,self._head._next)
 
     def add_last(self, e):
         """
@@ -131,7 +131,7 @@ class PositionalList(_DoublyLinkedBase):
         :param e:
         :return:
         """
-        return self._make_position(e, self._trailer._prev, self._trailer)
+        return self._insert_between(e, self._trailer._prev, self._trailer)
 
     def add_before(self, p, e):
         """
@@ -176,3 +176,43 @@ class PositionalList(_DoublyLinkedBase):
         old_value = original._element
         original._element = e
         return old_value
+
+    def insertion_sort(self):
+        """
+        Sort PositionList of  comparable elements into nondecresing order:
+        :return:
+        """
+        if len(self) > 1:
+            marker = self.first()
+            while marker != self.last():
+                pivot = self.after(marker)
+                value = pivot.element()
+                if value > marker.element():
+                    marker = pivot
+                else:
+                    walk = marker
+                    while walk != self.first() and self.before(walk).element() > value:
+                        walk = self.before(walk)
+                    self.delete(pivot)
+                    self.add_before(walk, value)
+
+
+if __name__ == "__main__":
+    pl = PositionalList()
+    pl.add_first(1)
+    pl.add_first(34)
+    p25 = pl.add_first(25)
+    pl.add_first(35)
+    pl.add_first(40)
+
+    print([el for el in iter(pl)])
+    print "the last element in list is %s" % pl.last().element()
+    print "the first element in list is %s" % pl.first().element()
+    print "the element before "
+    print ("the element before 25 is %s") % pl.before(p25).element()
+    print ("the element after 25 is %s") % pl.after(p25).element()
+    print ("Delete the element %s " % pl.delete(p25))
+    print([el for el in iter(pl)])
+    print("now Sort the list ..")
+    pl.insertion_sort()
+    print([el for el in iter(pl)])
