@@ -1,7 +1,8 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-from PositionalList import  PositionalList
+from PositionalList import PositionalList
+
 
 class FavoritesList:
     """
@@ -10,6 +11,7 @@ class FavoritesList:
     #------------------------------ nested Item class ------------------------------
     class _Item:
         __slots__ = '_value', '_count'
+
         def __init__(self, e):
             self._value = e
             self._count = 0
@@ -36,7 +38,7 @@ class FavoritesList:
             cnt = p.element()._count
             walk = self._data.before(p)
             if cnt > walk.element()._count:
-                while(walk != self._data.first() and cnt > self._data.before(walk)._count):
+                while (walk != self._data.first() and cnt > self._data.before(walk)._count):
                     walk = self._data.before(walk)
                 self._data.add_before(walk, self._data.delete(p))
 
@@ -48,7 +50,7 @@ class FavoritesList:
         Create an empty list of favorites.
         :return:
         """
-        self._data =PositionalList()
+        self._data = PositionalList()
 
     def __len__(self):
         """
@@ -102,6 +104,7 @@ class FavoritesList:
             yield item._value
             walk = self._data.after(walk)
 
+
 if __name__ == "__main__":
     pl = PositionalList()
     pl.add_first(1)
@@ -129,4 +132,4 @@ if __name__ == "__main__":
     fl.access("12")
     fl.access("4")
     print len(fl)
-    print [t for t in fl.top(4) ]
+    print [t for t in fl.top(4)]

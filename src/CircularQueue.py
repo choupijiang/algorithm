@@ -1,16 +1,19 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 # -*- coding:utf-8 -*-
 
 class Empty(Exception):
     pass
 
+
 class CircularQueue:
     """
     Queue implementation using circularly linked list for storage.
     """
+
     class _Node:
-        __slots__ = '_element','_next'
-        def __init__(self,element,next):
+        __slots__ = '_element', '_next'
+
+        def __init__(self, element, next):
             self._element = element
             self._next = next
 
@@ -27,7 +30,7 @@ class CircularQueue:
         Return the number of Elements in the queue
         :return:
         """
-        return  self._size
+        return self._size
 
     def is_empty(self):
         """
@@ -45,7 +48,7 @@ class CircularQueue:
         if self.is_empty():
             raise Empty("Queue is empty")
         head = self._tail._next
-        return  head._element
+        return head._element
 
     def dequeue(self):
         """
@@ -64,13 +67,13 @@ class CircularQueue:
         return oldhead._element
 
 
-    def enqueue(self,e):
+    def enqueue(self, e):
         """
         Add an element to the back of queue.
         :param e:
         :return:
         """
-        newest = self._Node(e,None)
+        newest = self._Node(e, None)
         if self.is_empty():
             raise Empty("Queue is empty")
 
@@ -88,5 +91,5 @@ class CircularQueue:
         Rotate front element to the back of the queue
         :return:
         """
-        if self._size>0:
+        if self._size > 0:
             self._tail = self._tail._next

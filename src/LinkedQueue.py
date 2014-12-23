@@ -1,17 +1,20 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 # -*- coding:utf-8 -*-
 
 class Empty(Exception):
     pass
 
+
 class LinkedQueue:
     """FIFO queue implementation using a singly linked list for storage."""
+
     class _Node:
         """
         Lightweight, nonpublic class for storing a singly linked node
         """
-        __slots__ = '_element','_next'
-        def __init__(self,element,next):
+        __slots__ = '_element', '_next'
+
+        def __init__(self, element, next):
             self._element = element
             self._next = next
 
@@ -60,17 +63,17 @@ class LinkedQueue:
         self._head = self._head._next
         if self.is_empty():
             self._tail = None
-        return  answer
+        return answer
 
 
-    def enqueue(self,e):
+    def enqueue(self, e):
         """
         Add an Element to the back of the queue
         :return:
         """
-        newest = self._Node(e,None)
+        newest = self._Node(e, None)
         if self.is_empty():
-            self._head._next  = newest
+            self._head._next = newest
         else:
             self._tail._next = newest
 

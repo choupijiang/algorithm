@@ -1,7 +1,9 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 # -*- coding:utf-8 -*-
 
 from DoublyLinkedBase import _DoublyLinkedBase
+
+
 class PositionalList(_DoublyLinkedBase):
     """
     A sequential container of elements allowing positional access.
@@ -11,6 +13,7 @@ class PositionalList(_DoublyLinkedBase):
         """
         An abstraction representing the location of a sigle element.
         """
+
         def __init__(self, container, node):
             self._container = container
             self._node = node
@@ -36,9 +39,9 @@ class PositionalList(_DoublyLinkedBase):
             :param other:
             :return:
             """
-            return not(self == other)
+            return not (self == other)
 
-    def _validate(self,p):
+    def _validate(self, p):
         """
         Return position's node ,or raise appropriate error if invalid.
         :param p:
@@ -76,9 +79,9 @@ class PositionalList(_DoublyLinkedBase):
         Return the last Position in the list (or None if list is empty)
         :return:
         """
-        return  self._make_position(self._trailer._prev)
+        return self._make_position(self._trailer._prev)
 
-    def before(self ,p):
+    def before(self, p):
         """
         Return the Position just before Position p(or None if p is first).
         :param p:
@@ -123,7 +126,7 @@ class PositionalList(_DoublyLinkedBase):
         :param e:
         :return:
         """
-        return self._insert_between(e, self._head,self._head._next)
+        return self._insert_between(e, self._head, self._head._next)
 
     def add_last(self, e):
         """
@@ -141,9 +144,9 @@ class PositionalList(_DoublyLinkedBase):
         :return:
         """
         original = self._validate(p)
-        return self._insert_between(e, original._prev ,original)
+        return self._insert_between(e, original._prev, original)
 
-    def add_after(self, p ,e):
+    def add_after(self, p, e):
         """
         Insert element e into list after Position p and return new Position.
         :param p:

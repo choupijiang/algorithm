@@ -1,10 +1,12 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 # -*- coding:utf-8 -*-
 
 from DoublyLinkedBase import _DoublyLinkedBase
 
+
 class Empty(Exception):
     pass
+
 
 class LinkedDeque(_DoublyLinkedBase):
     """
@@ -34,7 +36,7 @@ class LinkedDeque(_DoublyLinkedBase):
         Add an element to the front of the deque.
         :return:
         """
-        self._insert_between(e,self._head,self._head._next)
+        self._insert_between(e, self._head, self._head._next)
 
     def insert_last(self, e):
         """
