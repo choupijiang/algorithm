@@ -197,22 +197,3 @@ class PositionalList(_DoublyLinkedBase):
                     self.add_before(walk, value)
 
 
-if __name__ == "__main__":
-    pl = PositionalList()
-    pl.add_first(1)
-    pl.add_first(34)
-    p25 = pl.add_first(25)
-    pl.add_first(35)
-    pl.add_first(40)
-
-    print([el for el in iter(pl)])
-    print "the last element in list is %s" % pl.last().element()
-    print "the first element in list is %s" % pl.first().element()
-    print "the element before "
-    print ("the element before 25 is %s") % pl.before(p25).element()
-    print ("the element after 25 is %s") % pl.after(p25).element()
-    print ("Delete the element %s " % pl.delete(p25))
-    print([el for el in iter(pl)])
-    print("now Sort the list ..")
-    pl.insertion_sort()
-    print([el for el in iter(pl)])

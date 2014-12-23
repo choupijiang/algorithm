@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-class _DoublyLinkedBase:
+class _DoublyLinkedBase(object):
     """
     A base class providing a doubly linked list representation.
     """
