@@ -1,7 +1,7 @@
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-from DoublyLinkedBase import _DoublyLinkedBase
+from src.linkedList.DoublyLinkedBase import _DoublyLinkedBase
 
 
 class Empty(Exception):

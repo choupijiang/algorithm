@@ -1,7 +1,7 @@
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-from PositionalList import PositionalList
+from src.linkedList import PositionalList
 
 
 class FavoritesList:
