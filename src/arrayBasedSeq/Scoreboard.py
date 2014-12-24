@@ -38,10 +38,10 @@ class Scoreboard:
         :param entry:
         :return:
         """
-        score = entry.get_score
+        score = entry.get_score()
 
         good = self._n < len(self._board) or score > self._board[-1].get_score()
-
+        print len(self._board)
         if good:
             if self._n < len(self._board):
                 self._n += 1
@@ -50,3 +50,21 @@ class Scoreboard:
                 self._board[j] = self._board[j-1]
                 j -= 1
             self._board[j] = entry
+
+        print str(sb)
+
+
+if __name__ == "__main__":
+    Anna = GameEntry("Anna",660)
+    Rose = GameEntry("Rose",590)
+    Paul = GameEntry("Paul",720)
+    Jack = GameEntry("Jack",510)
+    Rob  = GameEntry("Rob" ,750)
+    Mike = GameEntry("Mike",1105)
+    sb = Scoreboard()
+    sb.add(Anna)
+    sb.add(Rose)
+    sb.add(Paul)
+    sb.add(Jack)
+    sb.add(Rob)
+    sb.add(Mike)
