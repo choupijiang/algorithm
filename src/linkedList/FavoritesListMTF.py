@@ -1,7 +1,8 @@
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-from src.linkedList import FavoritesList, PositionalList
+from FavoritesList import FavoritesList
+from PositionalList import PositionalList
 
 
 class FavoritesListMTF(FavoritesList):
