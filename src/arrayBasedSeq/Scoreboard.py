@@ -1,6 +1,8 @@
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-
-from GameEntry import  GameEntry
+from GameEntry import GameEntry
+
+
 class Scoreboard:
     """
     Fixed-length sequence of high scores in nondecreasing order.
@@ -13,7 +15,7 @@ class Scoreboard:
         :param capacity:
         :return:
         """
-        self._board = [None]*capacity
+        self._board = [None] * capacity
         self._n = 0
 
     def __getitem__(self, item):
@@ -45,9 +47,9 @@ class Scoreboard:
         if good:
             if self._n < len(self._board):
                 self._n += 1
-            j = self._n -1
-            while j>0 and self._board[j-1].get_score()<score:
-                self._board[j] = self._board[j-1]
+            j = self._n - 1
+            while j > 0 and self._board[j - 1].get_score() < score:
+                self._board[j] = self._board[j - 1]
                 j -= 1
             self._board[j] = entry
 
@@ -55,12 +57,12 @@ class Scoreboard:
 
 
 if __name__ == "__main__":
-    Anna = GameEntry("Anna",660)
-    Rose = GameEntry("Rose",590)
-    Paul = GameEntry("Paul",720)
-    Jack = GameEntry("Jack",510)
-    Rob  = GameEntry("Rob" ,750)
-    Mike = GameEntry("Mike",1105)
+    Anna = GameEntry("Anna", 660)
+    Rose = GameEntry("Rose", 590)
+    Paul = GameEntry("Paul", 720)
+    Jack = GameEntry("Jack", 510)
+    Rob = GameEntry("Rob", 750)
+    Mike = GameEntry("Mike", 1105)
     sb = Scoreboard()
     sb.add(Anna)
     sb.add(Rose)
