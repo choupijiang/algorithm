@@ -77,3 +77,4 @@ class BinaryTree(Tree):
         if not self.is_empty():
           for p in self._subtree_inorder(self.root()):
               yield p
+
