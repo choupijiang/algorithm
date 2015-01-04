@@ -241,5 +241,16 @@ class LinkedBinaryTree(BinaryTree):
             t2._root = None
             t2._size = 0
 
+    #-------------------------- pre order label --------------------------
+
+
+if __name__ == "__main__":
+    t = LinkedBinaryTree()
+    root = t._add_root(1)
+    root_left = t._add_left(root,"左根")
+    root_right = t._add_right(root, "右根")
+    t._add_right(root_right,"右右跟")
+    for x in iter(t):
+        print(x)
 
 
