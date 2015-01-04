@@ -17,7 +17,7 @@ class LinkedBinaryTree(BinaryTree):
             self._left = left
             self._right = right
 
-    class Postition(BinaryTree.Position):
+    class Position(BinaryTree.Position):
         """
         An abstraction representing the location of a sigle element.
         """
@@ -66,7 +66,10 @@ class LinkedBinaryTree(BinaryTree):
         :param node:
         :return:
         """
-        return  self.Position(self, node) if node is not None else None
+        if node is not None:
+            return  self.Position(self, node)
+        else:
+            return  None
 
     #-------------------------- binary tree constructor --------------------------
 
@@ -243,14 +246,31 @@ class LinkedBinaryTree(BinaryTree):
 
     #-------------------------- pre order label --------------------------
 
+    def preorder_label(self, p, d, path):
+        """
+        Print labeled representation of subtree of T rooted at p at depth d.
+        :param p:
+        :param d:
+        :param path:
+        :return:
+        """
+        label = '.'.join(str(j+1) for j in path)
+        print(2*d*' '+label, p.element())
+        path.append(0)
+        for c in self.children(p):
+            self.preorder_label( c, d+1, path)
+            path[-1] += 1
+        path.pop()
+
 
 if __name__ == "__main__":
     t = LinkedBinaryTree()
-    root = t._add_root(1)
+    root = t._add_root("根")
     root_left = t._add_left(root,"左根")
     root_right = t._add_right(root, "右根")
     t._add_right(root_right,"右右跟")
     for x in iter(t):
         print(x)
+    print (t.preorder_label(root,0,[]))
 
 
