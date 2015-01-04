@@ -1,6 +1,10 @@
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-
 
+import sys
+sys.path.append("../linkedList")
+from  LinkedQueue import LinkedQueue
+
 class Empty(Exception):
     pass
 
@@ -69,7 +73,7 @@ class Tree(object):
 
     def __len__(self):
         """
-        Return the
+        Return the total number of elements in the tree.
         :return:
         """
         raise NotImplementedError('must be implemented by subclass.')
@@ -101,6 +105,7 @@ class Tree(object):
     def depth(self, p):
         """
         Return the number of levels separating Position p from the root.
+        O(n)
         :param p:
         :return:
         """
@@ -112,6 +117,7 @@ class Tree(object):
     def _height1(self):
         """
         Return the height of the tree.
+        works, but O(nˆ2) worst-case time
         :return:
         """
         return max(self.depth(p) for p in self.positions() if self.is_leaf(p))
@@ -119,6 +125,8 @@ class Tree(object):
     def _height2(self, p):
         """
         Return the height of the subtree rooted at Position p.
+        time is linear in size of subtree
+        O(n+Σp cp).
         :param p:
         :return:
         """
@@ -138,5 +146,80 @@ class Tree(object):
             p = self.root()
         return self._height2(p)
 
+
+    def __iter__(self):
+        """
+        Generate an iteration of the tree's elements.
+        :return:
+        """
+        for p in self.positions():
+            yield p.element()
+
+    def positions(self):
+        """
+        Generate an iteration of the tree's positions.
+        :return:
+        """
+        return self.preorder() ## alse postorder,breadthfirst
+
+    #-----------------------Preorder Traversal-------------------------------
+
+    def _subtree_preorder(self, p):
+        """
+        Generate a preorder iteration of position in subtree rooted at p.
+        :param p:
+        :return:
+        """
+        yield p
+        for c in self.children(p):
+            for other in self._subtree_preorder(c):
+                yield other
+
+    def preorder(self):
+        """
+        Generate a preorder iteration of positions in the tree.
+        :return:
+        """
+        if not self.is_empty():
+            for p in self._subtree_preorder(self.root()):
+                yield p
+
+
+    #-----------------------Postorder Traversal-------------------------------
+
+    def _subtree_postorder(self, p):
+        """
+        Generate a postorder iteration of positions in subtree rooted at p .
+        :param p:
+        :return:
+        """
+        for c in self.children(p):
+            for other in self._subtree_postorder(c):
+                yield other
+        yield p
+
+    def postorder(self):
+        """
+        Generate a postorder iteration of positions in the tree.
+        :return:
+        """
+        if not self.is_empty():
+            for p in self._subtree_postorder(self.root()):
+                yield p
+
+    #--------------------Breadth-First Traversal-------------------------------
+    def breadthfirst(self):
+        """
+        Generate a breadth-first iteration of the positions of the tree.
+        :return:
+        """
+        if not self.is_empty():
+            fringe = LinkedQueue()
+            fringe.enqueue(self.root())
+            while not fringe.is_empty():
+                p = fringe.dequeue()
+                yield p
+                for c in self.children(p):
+                    fringe.enqueue(c)
 
 
