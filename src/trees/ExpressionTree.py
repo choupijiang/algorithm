@@ -98,10 +98,11 @@ def build_expression_tree(tokens):
         elif t ==")":
             right = S.pop()
             op = S.pop()
-            left = S.pop
+            left = S.pop()
             S.append(ExpressionTree(op, left, right))
     return S.pop()
 
 if __name__ == "__main__":
     et = build_expression_tree("(((3+1)*4)/((9-5)+2))")
-    print et
+    print(et)
+    print(et.evaluate())
