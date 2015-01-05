@@ -22,7 +22,7 @@ class ExpressionTree(LinkedBinaryTree):
         :param right:
         :return:
         """
-        self.super().__init__()
+        super(ExpressionTree, self).__init__()
         if not isinstance(token, str):
             raise TypeError("Token must be a string.")
         self._add_root(token)
@@ -82,3 +82,26 @@ class ExpressionTree(LinkedBinaryTree):
         """
         return self._evaluate_recur(self.root())
 
+
+def build_expression_tree(tokens):
+    """
+    Return an ExpressionTree based upen by a tokenized expression.
+    :param tokens:
+    :return:
+    """
+    S = []
+    for t in tokens:
+        if t in '+-X*/':
+            S.append(t)
+        elif t not in '()':
+            S.append(ExpressionTree(t))
+        elif t ==")":
+            right = S.pop()
+            op = S.pop()
+            left = S.pop
+            S.append(ExpressionTree(op, left, right))
+    return S.pop()
+
+if __name__ == "__main__":
+    et = build_expression_tree("(((3+1)*4)/((9-5)+2))")
+    print et
