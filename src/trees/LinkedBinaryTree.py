@@ -1,6 +1,7 @@
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-
 
+from __future__ import print_function
 from BinaryTree import BinaryTree
 
 class LinkedBinaryTree(BinaryTree):
@@ -255,12 +256,28 @@ class LinkedBinaryTree(BinaryTree):
         :return:
         """
         label = '.'.join(str(j+1) for j in path)
-        print(2*d*' '+label, p.element())
+        print("{0}{1}".format(2*d*' '+label, p.element()))
         path.append(0)
         for c in self.children(p):
             self.preorder_label( c, d+1, path)
             path[-1] += 1
         path.pop()
+
+    def parenthesize(self, p):
+        """
+        Print parenthesized representation of subtree of Tree rooted at p.
+        :param p:
+        :return:
+        """
+        print( p.element(), end="")
+        if not self.is_leaf(p):
+            first_time = True
+            for c in self.children(p):
+                sep = ' (' if first_time else ', '
+                print(sep ,end="")
+                first_time = False
+                self.parenthesize( c)
+            print(')', end="")
 
 
 if __name__ == "__main__":
@@ -268,9 +285,9 @@ if __name__ == "__main__":
     root = t._add_root("根")
     root_left = t._add_left(root,"左根")
     root_right = t._add_right(root, "右根")
+    t._add_left(root_right,"右左跟")
     t._add_right(root_right,"右右跟")
-    for x in iter(t):
-        print(x)
     print (t.preorder_label(root,0,[]))
+    print(t.parenthesize(root))
 
 
