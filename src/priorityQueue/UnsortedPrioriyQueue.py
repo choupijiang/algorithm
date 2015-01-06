@@ -69,3 +69,11 @@ class UnsortedPriorityQueue(PriorityQueueBase):
         p = self._find_min()
         item = self._data.delete(p)
         return (item._key, item._value)
+
+if __name__ == "__main__":
+    upq = UnsortedPriorityQueue()
+    upq.add(1,"cn")
+    upq.add(4,"usa")
+    upq.add(3,"rs")
+    print(len(upq))
+    print(upq.min())
