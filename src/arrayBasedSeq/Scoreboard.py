@@ -41,7 +41,6 @@ class Scoreboard:
         :return:
         """
         score = entry.get_score()
-
         good = self._n < len(self._board) or score > self._board[-1].get_score()
         print len(self._board)
         if good:
@@ -52,7 +51,6 @@ class Scoreboard:
                 self._board[j] = self._board[j - 1]
                 j -= 1
             self._board[j] = entry
-
         print str(sb)
 
 

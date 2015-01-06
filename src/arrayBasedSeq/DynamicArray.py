@@ -73,7 +73,7 @@ class DynamicArray:
 
     def remove(self, value):
         """
-        Remove first occurrence
+        Remove first occurrence`
         :param value:
         :return:
         """
