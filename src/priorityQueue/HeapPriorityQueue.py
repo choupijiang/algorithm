@@ -73,7 +73,7 @@ class HeapPriorityQueue(PriorityQueueBase):
         """
         return len(self._data)
 
-    def __add__(self, key, value):
+    def add(self, key, value):
         """
         Add a key-value pair to the priority-queue.
         :param key:
