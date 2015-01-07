@@ -1,5 +1,10 @@
 #! /use/env/bin python
 #-*- coding:utf-8 -*-
+#########################################
+##Unsorted Priority Queue.
+##selection-sort.
+#########################################
+
 import  sys
 from PriorityQueueBase import PriorityQueueBase
 sys.path.append("../linkedList")

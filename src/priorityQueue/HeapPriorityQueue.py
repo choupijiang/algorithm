@@ -1,6 +1,9 @@
 #! /use/env/bin python
 #-*- coding:utf-8 -*-
-
+#########################################
+##Heap Priority Queue.
+##heap-sort.
+#########################################
 import  sys
 from PriorityQueueBase import PriorityQueueBase
 
