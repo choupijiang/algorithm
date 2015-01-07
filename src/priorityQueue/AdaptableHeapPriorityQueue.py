@@ -1,8 +1,8 @@
 #! /use/env/bin python
 #-*- coding:utf-8 -*-
+
 #########################################
-##Heap Priority Queue.
-##heap-sort.
+## adaptable heapq
 #########################################
 
 from  HeapPriorityQueue import HeapPriorityQueue
