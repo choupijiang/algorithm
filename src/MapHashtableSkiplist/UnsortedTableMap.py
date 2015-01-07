@@ -73,4 +73,4 @@ if __name__ == "__main__":
     m["1002"] = "a"
     m["1003"] = "b"
     m["1004"] = "c"
-    print m.items()
+    print(m.items())
