@@ -43,7 +43,7 @@ class ProbeHashMap(HashMapBase):
         found, s = self._find_slot(j, k)
         if not found:
             raise KeyError("Key Error: " + repr(k))
-        return self._table[s]
+        return self._table[s]._value
 
     def _bucket_delitem(self, j, k, v):
         found, s = self._find_slot(j, k)
@@ -63,3 +63,12 @@ class ProbeHashMap(HashMapBase):
         for j in range(len(self._table)):
             if not self._is_available(j):
                 yield self._table[j]._key
+
+if __name__ == "__main__":
+    chm = ProbeHashMap()
+    chm[1] = 3
+    chm[1] = 4
+    chm[2] = 5
+    chm["a"] = 8
+    for x in chm:
+        print x, chm[x]
