@@ -26,7 +26,7 @@ class SortedTableMap(MapBase):
         if high < low:
             return high + 1
         else:
-            mid = (low + high) / 2
+            mid = (low + high) // 2
             if k == self._table[mid]._key:
                 return mid
             elif k < self._table[mid]._key:
@@ -169,4 +169,4 @@ if __name__ == "__main__":
     stm[3] = 4
     stm[2] = 1
     for x in stm:
-        print x, stm[x]
+        print("{0},{1}".format(x, stm[x]))
