@@ -69,10 +69,10 @@ class SortedTableMap(MapBase):
         :return:
         """
         j = self._find_index(k, 0, len(self._table) - 1)
-        if  j < len(self._table) or self._table[j]._key == k:
+        if  j < len(self._table) and  self._table[j]._key == k:
             self._table[j]._value = v
         else:
-            self._table.index(j ,self._Item(k, v))
+            self._table.insert(j ,self._Item(k, v))
 
     def __delitem__(self, k):
         """
@@ -161,3 +161,12 @@ class SortedTableMap(MapBase):
         while j < len(self._table) and (stop is None or self._table[j]._key < stop):
             yield (self._table[j]._key, self._table[j]._value)
             j += 1
+
+
+if __name__ == "__main__":
+    stm = SortedTableMap()
+    stm[1] = 3
+    stm[3] = 4
+    stm[2] = 1
+    for x in stm:
+        print x, stm[x]
