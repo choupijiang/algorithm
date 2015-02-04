@@ -168,7 +168,7 @@ class MutableMapping:
         """
         if len(self) == len(M2):
             for k1 in iter(self):
-                if self[k1] <>  M2[k1]:
+                if self[k1] !=  M2[k1]:
                     return False
             return True
         return False
