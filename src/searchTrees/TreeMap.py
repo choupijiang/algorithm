@@ -65,6 +65,14 @@ class TreeMap(LinkedBinaryTree, MapBase ):
             walk = self.right(walk)
         return walk
 
+    def _rebalance_insert(self, p):
+        pass
+
+    def _rebalance_delete(self, p):
+        pass
+
+    def _rebalace_access(self, p):
+        pass 
     #------------------------------- public utilities -------------------------------
 
     def first(self):
