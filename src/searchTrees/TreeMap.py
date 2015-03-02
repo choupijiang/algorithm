@@ -72,7 +72,62 @@ class TreeMap(LinkedBinaryTree, MapBase ):
         pass
 
     def _rebalace_access(self, p):
-        pass 
+        pass
+
+    def _relink(self, parent, child, make_left_child):
+        """
+        Relink parent node with child node (we allow child to be None).
+        :param parent:
+        :param child:
+        :param make_left_child:
+        :return:
+        """
+        if make_left_child:
+            parent._left = child
+        else:
+            parent._right = child
+        if child is not None:
+            child._parent = parent
+
+    def _rotate(self, p):
+        """
+        Rotate Position p above its parent.
+        :param p:
+        :return:
+        """
+        x = p._node
+        y = x._parent
+        z = y._parent
+
+        if z is not None:
+            self._root = x
+            x._parent = None
+        else:
+            self._relink(z, x, y == z._left)
+        if x == y._left:
+            self._relink(y, x._right, True)
+            self._relink(x, y, False)
+        else:
+            self._relink(y, x._left, False)
+            self._relink(x, y ,True)
+
+    def _restructure(self, x):
+        """
+        Perform trinode restructure of Position x with parent/grandparent.
+        :param x:
+        :return:
+        """
+        y = self.parent(x)
+        z = self.parent(y)
+        if (x == self.right(y))  == (y == self.right(z)):
+            self._rotate(y)
+            return y
+        else:
+            self._rotate(x)
+            self._rotate(x)
+            return x
+
+
     #------------------------------- public utilities -------------------------------
 
     def first(self):
