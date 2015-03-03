@@ -4,12 +4,13 @@
 from __future__ import print_function
 from BinaryTree import BinaryTree
 
+
 class LinkedBinaryTree(BinaryTree):
     """
     Linked representation of a binary tree structure.
     """
 
-    class _Node:
+    class _Node(object):
         __slots__ = '_element', '_parent', '_left', '_right'
 
         def __init__(self, element, parent=None, left=None, right=None):
@@ -22,6 +23,7 @@ class LinkedBinaryTree(BinaryTree):
         """
         An abstraction representing the location of a sigle element.
         """
+
         def __init__(self, container, node):
             """
             Constructor should not be invoked by user.
@@ -68,11 +70,11 @@ class LinkedBinaryTree(BinaryTree):
         :return:
         """
         if node is not None:
-            return  self.Position(self, node)
+            return self.Position(self, node)
         else:
-            return  None
+            return None
 
-    #-------------------------- binary tree constructor --------------------------
+    # -------------------------- binary tree constructor --------------------------
 
     def __init__(self):
         """
@@ -133,9 +135,9 @@ class LinkedBinaryTree(BinaryTree):
         node = self._validata(p)
         count = 0
         if node._left is not None:
-            count+=1
+            count += 1
         if node._right is not None:
-            count+=1
+            count += 1
         return count
 
     def _add_root(self, e):
@@ -160,7 +162,7 @@ class LinkedBinaryTree(BinaryTree):
         :return:
         """
         node = self._validata(p)
-        if node._left  is not None:
+        if node._left is not None:
             raise ValueError("Left child exists.")
         self._size += 1
         node._left = self._Node(e, node)
@@ -190,7 +192,7 @@ class LinkedBinaryTree(BinaryTree):
         :return:
         """
         node = self._validata(p)
-        old =node._element
+        old = node._element
         node._element = e
         return old
 
@@ -255,11 +257,11 @@ class LinkedBinaryTree(BinaryTree):
         :param path:
         :return:
         """
-        label = '.'.join(str(j+1) for j in path)
-        print("{0}{1}".format(2*d*' '+label, p.element()))
+        label = '.'.join(str(j + 1) for j in path)
+        print("{0}{1}".format(2 * d * ' ' + label, p.element()._value))
         path.append(0)
         for c in self.children(p):
-            self.preorder_label( c, d+1, path)
+            self.preorder_label(c, d + 1, path)
             path[-1] += 1
         path.pop()
 
@@ -269,25 +271,25 @@ class LinkedBinaryTree(BinaryTree):
         :param p:
         :return:
         """
-        print( p.element(), end="")
+        print(p.element()._value, end="")
         if not self.is_leaf(p):
             first_time = True
             for c in self.children(p):
                 sep = ' (' if first_time else ', '
-                print(sep ,end="")
+                print(sep, end="")
                 first_time = False
-                self.parenthesize( c)
+                self.parenthesize(c)
             print(')', end="")
 
 
 if __name__ == "__main__":
     t = LinkedBinaryTree()
     root = t._add_root("根")
-    root_left = t._add_left(root,"左根")
+    root_left = t._add_left(root, "左根")
     root_right = t._add_right(root, "右根")
-    t._add_left(root_right,"右左跟")
-    t._add_right(root_right,"右右跟")
-    print (t.preorder_label(root,0,[]))
+    t._add_left(root_right, "右左跟")
+    t._add_right(root_right, "右右跟")
+    print(t.preorder_label(root, 0, []))
     print(t.parenthesize(root))
 
 

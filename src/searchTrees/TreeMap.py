@@ -1,4 +1,7 @@
 #! /usr/bin/env python
+# -*- coding:utf-8 -*-
+
+
 
 import sys
 
@@ -71,7 +74,7 @@ class TreeMap(LinkedBinaryTree, MapBase ):
     def _rebalance_delete(self, p):
         pass
 
-    def _rebalace_access(self, p):
+    def _rebalance_access(self, p):
         pass
 
     def _relink(self, parent, child, make_left_child):
@@ -99,7 +102,7 @@ class TreeMap(LinkedBinaryTree, MapBase ):
         y = x._parent
         z = y._parent
 
-        if z is not None:
+        if z is  None:
             self._root = x
             x._parent = None
         else:
@@ -269,7 +272,7 @@ class TreeMap(LinkedBinaryTree, MapBase ):
                     leaf = self._add_right(p, item)
                 else:
                     leaf = self._add_left(p, item)
-        self.rebalance_insert(leaf)
+        self._rebalance_insert(leaf)
 
     def __iter__(self):
         """
