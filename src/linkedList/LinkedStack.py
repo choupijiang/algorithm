@@ -4,27 +4,18 @@
 class Empty(Exception):
     pass
 
-
-class Node:
-    """ Lightweight, nonpublic class for storing a singly linked node."""
-    __slots__ = '_element', '_next'  # streamline memory usage
-
-    def __init__(self, element, next):  # initialize node’s fields
-        self._element = element  # reference to user’s element
-        self._next = next  # reference to next node
-
-
 class LinkedStack:
     """
     LILO stack implementation using a singly linked list for storage
     """
 
     class _Node:
-        __slots__ = '_element', '_next'
+        """ Lightweight, nonpublic class for storing a singly linked node."""
+        __slots__ = '_element', '_next'  # streamline memory usage
 
-        def __init__(self, element, next):
-            self._element = element
-            self._next = next
+        def __init__(self, element, next):  # initialize node’s fields
+            self._element = element  # reference to user’s element
+            self._next = next  # reference to next node
 
     def __init__(self):
         self._head = None
